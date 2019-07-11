@@ -1,0 +1,13 @@
+FROM node:alpine
+
+WORKDIR /app/server
+
+RUN npm install nodemon -g
+
+COPY ./package.json ./
+
+RUN  npm i
+
+COPY . .
+
+CMD ["npm", "start"]

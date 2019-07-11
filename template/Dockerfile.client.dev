@@ -1,0 +1,13 @@
+FROM node:alpine
+
+WORKDIR /app/client
+
+COPY package.json ./
+
+RUN npm install --silent --no-cache
+
+COPY ./ ./
+
+RUN npm run build:dll && rm -rf server
+
+CMD ["npm", "start"]

@@ -1,0 +1,9 @@
+{
+  "port": 8090,
+  "development": {
+    "ip": "http://localhost:8080"
+  },
+  "production": {
+    "ip":"http://localhost:8080"
+  }
+}
