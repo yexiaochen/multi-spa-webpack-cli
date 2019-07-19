@@ -19,7 +19,8 @@ module.exports = merge.smart(common, {
     publicPath: '/',
     contentBase: path.resolve(__dirname, '..', 'dist'),
     port: APP_CONFIG.port,
-    host: '0.0.0.0',
+    // 使用 docker
+    // host: '0.0.0.0',
     hot: true,
     historyApiFallback: {
       index: '/'

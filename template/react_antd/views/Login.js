@@ -22,6 +22,10 @@ const Login = props => {
     form.validateFields((err, values) => {
       if (err) return;
       login(values, resposne => {
+        if (!resposne.success) {
+          message.error(resposne.message);
+          return false;
+        }
         history.push({
           pathname: '/user'
         });
