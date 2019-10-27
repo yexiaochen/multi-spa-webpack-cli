@@ -97,31 +97,28 @@ function DownTemplate(projectDir) {
   let downTemplateSpinner = ora(chalk.cyan('模板下载中...')).start();
   return new Promise((resolve, reject) => {
     shell.exec(`
-      mkdir ${projectDir}
-      cd ${projectDir}
-      git init
-      git remote add -f origin ${remote}
-      git config core.sparsecheckout true
-      echo "${serveDir}" >> .git/info/sparse-checkout
-      echo "template/common" >> .git/info/sparse-checkout
-      echo "template/config" >> .git/info/sparse-checkout
-      echo "template/services" >> .git/info/sparse-checkout
-      echo "template/docker" >> .git/info/sparse-checkout
-      echo "template/${template}" >> .git/info/sparse-checkout
-      echo "template/.gitignore" >> .git/info/sparse-checkout
-      echo "template/.dockerignore" >> .git/info/sparse-checkout
-      echo "template/.editorconfig" >> .git/info/sparse-checkout
-      echo "template/package.json" >> .git/info/sparse-checkout
-      echo "template/env-config.json" >> .git/info/sparse-checkout
-      echo "template/README.md" >> .git/info/sparse-checkout
-      echo "template/Dockerfile.client.dev" >> .git/info/sparse-checkout
-      echo "index.html" >> .git/info/sparse-checkout
-      git pull origin master
-      rm -rf .git
-      mv template/* ./
-      mv ${template} src
-      rm -rf template
-      `, (error) => {
+    (mkdir ${projectDir}) &&
+    (cd ${projectDir}) &&
+    (git init) &&
+    (git remote add -f origin ${remote}) &&
+    (git config core.sparsecheckout true) &&
+    (echo "${serveDir}" >> .git/info/sparse-checkout) &&
+    (echo "template/common" >> .git/info/sparse-checkout) &&
+    (echo "template/config" >> .git/info/sparse-checkout) &&
+    (echo "template/docker" >> .git/info/sparse-checkout) &&
+    (echo "template/services" >> .git/info/sparse-checkout) &&
+    (echo "template/${template}" >> .git/info/sparse-checkout) &&
+    (echo "template/.gitignore" >> .git/info/sparse-checkout) &&
+    (echo "template/package.json" >> .git/info/sparse-checkout) &&
+    (echo "template/env-config.json" >> .git/info/sparse-checkout) &&
+    (echo "template/README.md" >> .git/info/sparse-checkout) &&
+    (echo "index.html" >> .git/info/sparse-checkout) &&
+    (git pull origin master) &&
+    (rm -rf .git) &&
+    (mv template/* ./) &&
+    (mv ${template} src) &&
+    (rm -rf template)
+    `, (error) => {
         if (error) {
           downTemplateSpinner.stop()
           ora(chalk.red(`模板下载失败：${error}`)).fail()
